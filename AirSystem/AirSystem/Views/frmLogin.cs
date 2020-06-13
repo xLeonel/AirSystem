@@ -1,8 +1,11 @@
-﻿using AirSystem.Views;
+﻿using AirSystem.Models;
+using AirSystem.Repositories;
+using AirSystem.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +20,9 @@ namespace AirSystem
         {
             InitializeComponent();
         }
+
+        string textoPadrao = "";
+
 
         private void InvisibleLabel(Label labelName)
         {
@@ -48,39 +54,54 @@ namespace AirSystem
 
         }
 
-        private void tbxUsuario_Enter(object sender, EventArgs e)
+        private void Inputs_Enter(object sender, EventArgs e)
         {
-            if (tbxUsuario.Text == "Digite seu usuario")
+            TextBox tbx = sender as TextBox;
+
+            textoPadrao = tbx.Text;
+
+            if (tbx.Text == tbx.Text)
             {
-                tbxUsuario.Text = "";
-                tbxUsuario.ForeColor = Color.Black;
+                tbx.Text = "";
+                tbx.ForeColor = Color.Black;
+                tbx.Font = Font;
+            }
+            
+        }
+
+        private void Inputs_Leave(object sender, EventArgs e)
+        {
+            TextBox tbx = sender as TextBox;
+
+            if (tbx.Text == "")
+            {
+                tbx.Text = textoPadrao;
+                tbx.ForeColor = Color.Gray;
             }
         }
 
-        private void tbxUsuario_Leave(object sender, EventArgs e)
+        private void btnEntrar_Click(object sender, EventArgs e)
         {
-            if (tbxUsuario.Text == "")
-            {
-                tbxUsuario.Text = "Digite seu usuario";
-                tbxUsuario.ForeColor = Color.Gray;
-            }
-        }
+            UsuarioRepository usuarioRepository = new UsuarioRepository();
+            List<Usuario> usuarios = usuarioRepository.BuscarTodos();
 
-        private void tbxSenha_Enter(object sender, EventArgs e)
-        {
-            if (tbxSenha.Text == "Digite sua senha")
+            foreach (var item in usuarios)
             {
-                tbxSenha.Text = "";
-                tbxSenha.ForeColor = Color.Black;
-            }
-        }
+                if (item.Username == tbxUsuario.Text && item.Senha == tbxSenha.Text)
+                {
+                    if (item.IsAdmin)
+                    {
+                        //frmPainelAdmin.Show();
+                        MessageBox.Show("Admin.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-        private void tbxSenha_Leave(object sender, EventArgs e)
-        {
-            if (tbxSenha.Text == "")
-            {
-                tbxSenha.Text = "Digite sua senha";
-                tbxSenha.ForeColor = Color.Gray;
+                    }
+                    else
+                    {
+                        //frmPainelUser.Show();
+                        MessageBox.Show("Usuario.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                }
             }
         }
     }

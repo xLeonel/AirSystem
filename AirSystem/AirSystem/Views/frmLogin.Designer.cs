@@ -58,14 +58,15 @@
             // 
             // tbxUsuario
             // 
+            this.tbxUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxUsuario.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.tbxUsuario.Location = new System.Drawing.Point(549, 154);
             this.tbxUsuario.Name = "tbxUsuario";
             this.tbxUsuario.Size = new System.Drawing.Size(149, 20);
             this.tbxUsuario.TabIndex = 3;
             this.tbxUsuario.Text = "Digite seu usuario";
-            this.tbxUsuario.Enter += new System.EventHandler(this.tbxUsuario_Enter);
-            this.tbxUsuario.Leave += new System.EventHandler(this.tbxUsuario_Leave);
+            this.tbxUsuario.Enter += new System.EventHandler(this.Inputs_Enter);
+            this.tbxUsuario.Leave += new System.EventHandler(this.Inputs_Leave);
             // 
             // lblSenha
             // 
@@ -79,14 +80,15 @@
             // 
             // tbxSenha
             // 
+            this.tbxSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxSenha.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.tbxSenha.Location = new System.Drawing.Point(549, 206);
             this.tbxSenha.Name = "tbxSenha";
             this.tbxSenha.Size = new System.Drawing.Size(149, 20);
             this.tbxSenha.TabIndex = 5;
             this.tbxSenha.Text = "Digite sua senha";
-            this.tbxSenha.Enter += new System.EventHandler(this.tbxSenha_Enter);
-            this.tbxSenha.Leave += new System.EventHandler(this.tbxSenha_Leave);
+            this.tbxSenha.Enter += new System.EventHandler(this.Inputs_Enter);
+            this.tbxSenha.Leave += new System.EventHandler(this.Inputs_Leave);
             // 
             // lblIdioma
             // 
@@ -107,6 +109,7 @@
             this.btnEntrar.TabIndex = 7;
             this.btnEntrar.Text = "Entrar";
             this.btnEntrar.UseVisualStyleBackColor = true;
+            this.btnEntrar.Click += new System.EventHandler(this.btnEntrar_Click);
             // 
             // btnCadastrar
             // 
@@ -153,7 +156,7 @@
             // lblTempo
             // 
             this.lblTempo.AutoSize = true;
-            this.lblTempo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblTempo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblTempo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTempo.ForeColor = System.Drawing.SystemColors.Control;
             this.lblTempo.Location = new System.Drawing.Point(12, 9);

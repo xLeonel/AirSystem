@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCadastroUsuario));
             this.lblNome = new System.Windows.Forms.Label();
             this.lblEndereco = new System.Windows.Forms.Label();
             this.lblNascimento = new System.Windows.Forms.Label();
@@ -44,9 +45,11 @@
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnRemover = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.cbxAdm = new System.Windows.Forms.CheckBox();
+            this.dtpNascimento = new System.Windows.Forms.DateTimePicker();
             this.pcbUserFoto = new System.Windows.Forms.PictureBox();
+            this.lblSenhaAviso = new System.Windows.Forms.Label();
+            this.lblSenhaRegex = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pcbUserFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,85 +115,100 @@
             // 
             // tbxSenha
             // 
-            this.tbxSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxSenha.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.tbxSenha.Location = new System.Drawing.Point(169, 249);
             this.tbxSenha.Name = "tbxSenha";
-            this.tbxSenha.Size = new System.Drawing.Size(145, 21);
+            this.tbxSenha.Size = new System.Drawing.Size(145, 20);
             this.tbxSenha.TabIndex = 6;
             this.tbxSenha.Text = "Insira sua senha";
+            this.tbxSenha.TextChanged += new System.EventHandler(this.tbxSenha_TextChanged);
+            this.tbxSenha.Enter += new System.EventHandler(this.Inputs_Enter);
+            this.tbxSenha.Leave += new System.EventHandler(this.Inputs_Leave);
             // 
             // tbxSobrenome
             // 
-            this.tbxSobrenome.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.tbxSobrenome.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxSobrenome.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.tbxSobrenome.Location = new System.Drawing.Point(320, 27);
             this.tbxSobrenome.Name = "tbxSobrenome";
-            this.tbxSobrenome.Size = new System.Drawing.Size(145, 21);
+            this.tbxSobrenome.Size = new System.Drawing.Size(145, 20);
             this.tbxSobrenome.TabIndex = 1;
             this.tbxSobrenome.Text = "Digite seu sobrenome";
-            this.tbxSobrenome.Enter += new System.EventHandler(this.tbxSobrenome_Enter);
-            this.tbxSobrenome.Leave += new System.EventHandler(this.tbxSobrenome_Leave);
+            this.tbxSobrenome.Enter += new System.EventHandler(this.Inputs_Enter);
+            this.tbxSobrenome.Leave += new System.EventHandler(this.Inputs_Leave);
             // 
             // tbxEndereco
             // 
-            this.tbxEndereco.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxEndereco.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxEndereco.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.tbxEndereco.Location = new System.Drawing.Point(169, 87);
             this.tbxEndereco.Name = "tbxEndereco";
-            this.tbxEndereco.Size = new System.Drawing.Size(230, 21);
+            this.tbxEndereco.Size = new System.Drawing.Size(230, 20);
             this.tbxEndereco.TabIndex = 2;
             this.tbxEndereco.Text = "Digite seu endereço";
+            this.tbxEndereco.Enter += new System.EventHandler(this.Inputs_Enter);
+            this.tbxEndereco.Leave += new System.EventHandler(this.Inputs_Leave);
             // 
             // tbxUsuario
             // 
-            this.tbxUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxUsuario.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.tbxUsuario.Location = new System.Drawing.Point(169, 191);
             this.tbxUsuario.Name = "tbxUsuario";
-            this.tbxUsuario.Size = new System.Drawing.Size(145, 21);
+            this.tbxUsuario.Size = new System.Drawing.Size(145, 20);
             this.tbxUsuario.TabIndex = 5;
             this.tbxUsuario.Text = "Insira seu usuario";
+            this.tbxUsuario.Enter += new System.EventHandler(this.Inputs_Enter);
+            this.tbxUsuario.Leave += new System.EventHandler(this.Inputs_Leave);
             // 
             // tbxNome
             // 
-            this.tbxNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.tbxNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxNome.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.tbxNome.Location = new System.Drawing.Point(169, 27);
             this.tbxNome.Name = "tbxNome";
-            this.tbxNome.Size = new System.Drawing.Size(145, 21);
+            this.tbxNome.Size = new System.Drawing.Size(145, 20);
             this.tbxNome.TabIndex = 0;
             this.tbxNome.Text = "Digite seu nome";
-            this.tbxNome.Enter += new System.EventHandler(this.tbxNome_Enter);
-            this.tbxNome.Leave += new System.EventHandler(this.tbxNome_Leave);
+            this.tbxNome.Enter += new System.EventHandler(this.Inputs_Enter);
+            this.tbxNome.Leave += new System.EventHandler(this.Inputs_Leave);
             // 
             // tbxNendereco
             // 
+            this.tbxNendereco.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxNendereco.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.tbxNendereco.Location = new System.Drawing.Point(405, 87);
             this.tbxNendereco.Name = "tbxNendereco";
             this.tbxNendereco.Size = new System.Drawing.Size(91, 20);
             this.tbxNendereco.TabIndex = 3;
             this.tbxNendereco.Text = "N°";
+            this.tbxNendereco.Enter += new System.EventHandler(this.Inputs_Enter);
+            this.tbxNendereco.Leave += new System.EventHandler(this.Inputs_Leave);
             // 
             // tbxConfirmarSenha
             // 
-            this.tbxConfirmarSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxConfirmarSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxConfirmarSenha.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.tbxConfirmarSenha.Location = new System.Drawing.Point(169, 306);
             this.tbxConfirmarSenha.Name = "tbxConfirmarSenha";
-            this.tbxConfirmarSenha.Size = new System.Drawing.Size(145, 21);
+            this.tbxConfirmarSenha.Size = new System.Drawing.Size(145, 20);
             this.tbxConfirmarSenha.TabIndex = 7;
             this.tbxConfirmarSenha.Text = "Confirme sua senha";
+            this.tbxConfirmarSenha.TextChanged += new System.EventHandler(this.tbxConfirmarSenha_TextChanged);
+            this.tbxConfirmarSenha.Enter += new System.EventHandler(this.Inputs_Enter);
+            this.tbxConfirmarSenha.Leave += new System.EventHandler(this.Inputs_Leave);
             // 
             // btnCadastrar
             // 
+            this.btnCadastrar.ForeColor = System.Drawing.Color.Black;
             this.btnCadastrar.Location = new System.Drawing.Point(405, 390);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
             this.btnCadastrar.TabIndex = 11;
             this.btnCadastrar.Text = "Cadastrar";
             this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // btnAlterar
             // 
@@ -200,6 +218,7 @@
             this.btnAlterar.TabIndex = 8;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnRemover
             // 
@@ -209,29 +228,33 @@
             this.btnRemover.TabIndex = 9;
             this.btnRemover.Text = "Remover";
             this.btnRemover.UseVisualStyleBackColor = true;
+            this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
             // 
-            // checkBox1
+            // cbxAdm
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(618, 230);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(89, 17);
-            this.checkBox1.TabIndex = 10;
-            this.checkBox1.Text = "Administrador";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbxAdm.AutoSize = true;
+            this.cbxAdm.Location = new System.Drawing.Point(618, 230);
+            this.cbxAdm.Name = "cbxAdm";
+            this.cbxAdm.Size = new System.Drawing.Size(89, 17);
+            this.cbxAdm.TabIndex = 10;
+            this.cbxAdm.Text = "Administrador";
+            this.cbxAdm.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // dtpNascimento
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(169, 139);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(145, 21);
-            this.dateTimePicker1.TabIndex = 16;
+            this.dtpNascimento.CustomFormat = "";
+            this.dtpNascimento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpNascimento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpNascimento.Location = new System.Drawing.Point(169, 139);
+            this.dtpNascimento.Name = "dtpNascimento";
+            this.dtpNascimento.Size = new System.Drawing.Size(145, 21);
+            this.dtpNascimento.TabIndex = 16;
             // 
             // pcbUserFoto
             // 
-            this.pcbUserFoto.InitialImage = global::AirSystem.Properties.Resources.padraoUserPicture;
+            this.pcbUserFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pcbUserFoto.Image = global::AirSystem.Properties.Resources.padraoUserPicture;
+            this.pcbUserFoto.InitialImage = ((System.Drawing.Image)(resources.GetObject("pcbUserFoto.InitialImage")));
             this.pcbUserFoto.Location = new System.Drawing.Point(618, 27);
             this.pcbUserFoto.Name = "pcbUserFoto";
             this.pcbUserFoto.Size = new System.Drawing.Size(170, 129);
@@ -239,13 +262,36 @@
             this.pcbUserFoto.TabIndex = 15;
             this.pcbUserFoto.TabStop = false;
             // 
+            // lblSenhaAviso
+            // 
+            this.lblSenhaAviso.AutoSize = true;
+            this.lblSenhaAviso.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSenhaAviso.ForeColor = System.Drawing.Color.Red;
+            this.lblSenhaAviso.Location = new System.Drawing.Point(320, 309);
+            this.lblSenhaAviso.Name = "lblSenhaAviso";
+            this.lblSenhaAviso.Size = new System.Drawing.Size(163, 13);
+            this.lblSenhaAviso.TabIndex = 17;
+            this.lblSenhaAviso.Text = "As senhas precisam ser idênticas";
+            // 
+            // lblSenhaRegex
+            // 
+            this.lblSenhaRegex.AutoSize = true;
+            this.lblSenhaRegex.ForeColor = System.Drawing.Color.Red;
+            this.lblSenhaRegex.Location = new System.Drawing.Point(317, 253);
+            this.lblSenhaRegex.Name = "lblSenhaRegex";
+            this.lblSenhaRegex.Size = new System.Drawing.Size(388, 13);
+            this.lblSenhaRegex.TabIndex = 18;
+            this.lblSenhaRegex.Text = "A senha deve ter: pelo menos 8 caracteres, 1 letra maiúscula, 1 letra e 1 Número";
+            // 
             // frmCadastroUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.lblSenhaRegex);
+            this.Controls.Add(this.lblSenhaAviso);
+            this.Controls.Add(this.dtpNascimento);
+            this.Controls.Add(this.cbxAdm);
             this.Controls.Add(this.btnRemover);
             this.Controls.Add(this.btnAlterar);
             this.Controls.Add(this.pcbUserFoto);
@@ -263,7 +309,7 @@
             this.Controls.Add(this.lblNascimento);
             this.Controls.Add(this.lblEndereco);
             this.Controls.Add(this.lblNome);
-            this.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.ForeColor = System.Drawing.Color.Black;
             this.Name = "frmCadastroUsuario";
             this.Text = "Cadastro Usuário - AirSystem";
             this.Load += new System.EventHandler(this.frmCadastroUsuario_Load);
@@ -292,7 +338,9 @@
         private System.Windows.Forms.PictureBox pcbUserFoto;
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.Button btnRemover;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.CheckBox cbxAdm;
+        private System.Windows.Forms.DateTimePicker dtpNascimento;
+        private System.Windows.Forms.Label lblSenhaAviso;
+        private System.Windows.Forms.Label lblSenhaRegex;
     }
 }
