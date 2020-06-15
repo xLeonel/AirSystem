@@ -13,9 +13,9 @@ using System.Windows.Forms;
 
 namespace AirSystem.Views
 {
-    public partial class frmCadastroUsuario : Form
+    public partial class frmCadastroIngles : Form
     {
-        public frmCadastroUsuario()
+        public frmCadastroIngles()
         {
             InitializeComponent();
         }
@@ -34,7 +34,7 @@ namespace AirSystem.Views
             InvisibleLabel(lblSenhaRegex);
             InvisibleLabel(lblUsuario);
 
-            cbxAdm.Parent = panel1;
+            cbxAdm.Parent = panel2;
             cbxAdm.BackColor = Color.Transparent;
         }
 
@@ -72,18 +72,18 @@ namespace AirSystem.Views
 
                     if (usuarioRepository.Cadastrar(usuario))
                     {
-                        MessageBox.Show("Cadastrado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Registered Successfully.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("As senhas precisam ser idênticas.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Password must be the same.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
             }
             else
             {
-                MessageBox.Show("Preencha todos os campos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Fill in all fields.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
         }
@@ -104,7 +104,7 @@ namespace AirSystem.Views
         private void btnAlterar_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Arquivos de imagens(*.jpg;*.png)|*.jpg;*.png";
+            ofd.Filter = "Image File(*.jpg;*.png)|*.jpg;*.png";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 pcbUserFoto.Image = Image.FromFile(ofd.FileName);
@@ -118,26 +118,26 @@ namespace AirSystem.Views
 
         private void InvisibleLabel(Label labelName)
         {
-            labelName.Parent = panel1;
+            labelName.Parent = panel2;
             labelName.BackColor = Color.Transparent;
 
         }
 
         private void Focus_enter(object sender, EventArgs e)
         {
-            panel1.BackColor = Color.FromArgb(60, Color.Yellow);
+            panel2.BackColor = Color.FromArgb(60, Color.Yellow);
         }
 
         private void Focus_leave(object sender, EventArgs e)
         {
-            panel1.BackColor = Color.White;
+            panel2.BackColor = Color.White;
         }
 
         private void frmCadastroUsuario_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
-                var result = MessageBox.Show(this, "Você tem certeza que deseja sair?", "Confirmação", MessageBoxButtons.YesNo);
+                var result = MessageBox.Show(this, "Are you sure want to quit?", "Confirm", MessageBoxButtons.YesNo);
                 if (result != DialogResult.Yes)
                 {
                     e.Cancel = true;

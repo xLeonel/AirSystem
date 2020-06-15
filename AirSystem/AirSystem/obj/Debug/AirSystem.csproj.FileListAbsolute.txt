@@ -20,3 +20,8 @@ C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\obj\Debug\AirSystem.csproj.
 C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\obj\Debug\AirSystem.csproj.CoreCompileInputs.cache
 C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\obj\Debug\AirSystem.exe
 C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\obj\Debug\AirSystem.pdb
+C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\obj\Debug\AirSystem.Views.frmListarUsuarios.resources
+C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\obj\Debug\AirSystem.Views.frmTelaAdm.resources
+C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\obj\Debug\AirSystem.Views.frmTelaUser.resources
+C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\obj\Debug\AirSystem.MarkedWaterTextBox.resources
+C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\obj\Debug\AirSystem.Views.frmCadastroIngles.resources

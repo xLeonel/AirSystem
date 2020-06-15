@@ -30,17 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             this.lblUsuario = new System.Windows.Forms.Label();
-            this.tbxUsuario = new System.Windows.Forms.TextBox();
             this.lblSenha = new System.Windows.Forms.Label();
-            this.tbxSenha = new System.Windows.Forms.TextBox();
             this.lblIdioma = new System.Windows.Forms.Label();
             this.btnEntrar = new System.Windows.Forms.Button();
             this.btnCadastrar = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbxIdioma = new System.Windows.Forms.ComboBox();
             this.pcbBackground = new System.Windows.Forms.PictureBox();
             this.lblLogo = new System.Windows.Forms.Label();
             this.lblTempo = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tbxUsuario = new AirSystem.MarkedWaterTextBox();
+            this.tbxSenha = new AirSystem.MarkedWaterTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pcbBackground)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,18 +56,6 @@
             this.lblUsuario.TabIndex = 1;
             this.lblUsuario.Text = "Usuario";
             // 
-            // tbxUsuario
-            // 
-            this.tbxUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxUsuario.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.tbxUsuario.Location = new System.Drawing.Point(549, 154);
-            this.tbxUsuario.Name = "tbxUsuario";
-            this.tbxUsuario.Size = new System.Drawing.Size(149, 20);
-            this.tbxUsuario.TabIndex = 3;
-            this.tbxUsuario.Text = "Digite seu usuario";
-            this.tbxUsuario.Enter += new System.EventHandler(this.Inputs_Enter);
-            this.tbxUsuario.Leave += new System.EventHandler(this.Inputs_Leave);
-            // 
             // lblSenha
             // 
             this.lblSenha.AutoSize = true;
@@ -77,18 +65,6 @@
             this.lblSenha.Size = new System.Drawing.Size(49, 17);
             this.lblSenha.TabIndex = 4;
             this.lblSenha.Text = "Senha";
-            // 
-            // tbxSenha
-            // 
-            this.tbxSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxSenha.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.tbxSenha.Location = new System.Drawing.Point(549, 206);
-            this.tbxSenha.Name = "tbxSenha";
-            this.tbxSenha.Size = new System.Drawing.Size(149, 20);
-            this.tbxSenha.TabIndex = 5;
-            this.tbxSenha.Text = "Digite sua senha";
-            this.tbxSenha.Enter += new System.EventHandler(this.Inputs_Enter);
-            this.tbxSenha.Leave += new System.EventHandler(this.Inputs_Leave);
             // 
             // lblIdioma
             // 
@@ -121,16 +97,17 @@
             this.btnCadastrar.UseVisualStyleBackColor = true;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
-            // comboBox1
+            // cbxIdioma
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbxIdioma.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxIdioma.FormattingEnabled = true;
+            this.cbxIdioma.Items.AddRange(new object[] {
             "Português",
             "Inglês"});
-            this.comboBox1.Location = new System.Drawing.Point(549, 272);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(149, 21);
-            this.comboBox1.TabIndex = 9;
+            this.cbxIdioma.Location = new System.Drawing.Point(549, 272);
+            this.cbxIdioma.Name = "cbxIdioma";
+            this.cbxIdioma.Size = new System.Drawing.Size(149, 21);
+            this.cbxIdioma.TabIndex = 9;
             // 
             // pcbBackground
             // 
@@ -170,24 +147,45 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // tbxUsuario
+            // 
+            this.tbxUsuario.ForeColor = System.Drawing.Color.Gray;
+            this.tbxUsuario.Location = new System.Drawing.Point(549, 154);
+            this.tbxUsuario.Name = "tbxUsuario";
+            this.tbxUsuario.Size = new System.Drawing.Size(149, 20);
+            this.tbxUsuario.TabIndex = 13;
+            this.tbxUsuario.Text = "Digite seu usuario";
+            this.tbxUsuario.WaterMarkText = "Digite seu usuario";
+            // 
+            // tbxSenha
+            // 
+            this.tbxSenha.ForeColor = System.Drawing.Color.Gray;
+            this.tbxSenha.Location = new System.Drawing.Point(549, 206);
+            this.tbxSenha.Name = "tbxSenha";
+            this.tbxSenha.Size = new System.Drawing.Size(149, 20);
+            this.tbxSenha.TabIndex = 14;
+            this.tbxSenha.Text = "Digite sua senha";
+            this.tbxSenha.WaterMarkText = "Digite sua senha";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.tbxSenha);
+            this.Controls.Add(this.tbxUsuario);
             this.Controls.Add(this.lblTempo);
             this.Controls.Add(this.lblLogo);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbxIdioma);
             this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.btnEntrar);
             this.Controls.Add(this.lblIdioma);
-            this.Controls.Add(this.tbxSenha);
             this.Controls.Add(this.lblSenha);
-            this.Controls.Add(this.tbxUsuario);
             this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.pcbBackground);
             this.Name = "Form1";
             this.Text = "Login - AirSystem";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pcbBackground)).EndInit();
             this.ResumeLayout(false);
@@ -199,16 +197,16 @@
 
         private System.Windows.Forms.PictureBox pcbBackground;
         private System.Windows.Forms.Label lblUsuario;
-        private System.Windows.Forms.TextBox tbxUsuario;
         private System.Windows.Forms.Label lblSenha;
-        private System.Windows.Forms.TextBox tbxSenha;
         private System.Windows.Forms.Label lblIdioma;
         private System.Windows.Forms.Button btnEntrar;
         private System.Windows.Forms.Button btnCadastrar;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbxIdioma;
         private System.Windows.Forms.Label lblLogo;
         private System.Windows.Forms.Label lblTempo;
         private System.Windows.Forms.Timer timer1;
+        private MarkedWaterTextBox tbxUsuario;
+        private MarkedWaterTextBox tbxSenha;
     }
 }
 

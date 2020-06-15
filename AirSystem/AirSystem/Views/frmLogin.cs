@@ -19,10 +19,8 @@ namespace AirSystem
         public Form1()
         {
             InitializeComponent();
+
         }
-
-        string textoPadrao = "";
-
 
         private void InvisibleLabel(Label labelName)
         {
@@ -38,7 +36,6 @@ namespace AirSystem
             InvisibleLabel(lblSenha);
             InvisibleLabel(lblIdioma);
             InvisibleLabel(lblTempo);
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -49,58 +46,81 @@ namespace AirSystem
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            frmCadastroUsuario frmCadastro = new frmCadastroUsuario();
-            frmCadastro.Show();
-
-        }
-
-        private void Inputs_Enter(object sender, EventArgs e)
-        {
-            TextBox tbx = sender as TextBox;
-
-            textoPadrao = tbx.Text;
-
-            if (tbx.Text == tbx.Text)
+            if (!string.IsNullOrEmpty(cbxIdioma.Text))
             {
-                tbx.Text = "";
-                tbx.ForeColor = Color.Black;
-                tbx.Font = Font;
+                if (cbxIdioma.Text != "Inglês")
+                {
+                    frmCadastroUsuario frmCadastro = new frmCadastroUsuario();
+                    frmCadastro.Show();
+                }
+                else
+                {
+                    frmCadastroIngles frmCadastro = new frmCadastroIngles();
+                    frmCadastro.Show();
+                }
             }
-            
-        }
-
-        private void Inputs_Leave(object sender, EventArgs e)
-        {
-            TextBox tbx = sender as TextBox;
-
-            if (tbx.Text == "")
+            else
             {
-                tbx.Text = textoPadrao;
-                tbx.ForeColor = Color.Gray;
+                MessageBox.Show(this, "Escolha um Idioma / Choose a language", "Confirmação", MessageBoxButtons.OK);
             }
         }
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            UsuarioRepository usuarioRepository = new UsuarioRepository();
-            List<Usuario> usuarios = usuarioRepository.BuscarTodos();
-
-            foreach (var item in usuarios)
+            if (!string.IsNullOrEmpty(cbxIdioma.Text))
             {
-                if (item.Username == tbxUsuario.Text && item.Senha == tbxSenha.Text)
+                UsuarioRepository usuarioRepository = new UsuarioRepository();
+                List<Usuario> usuarios = usuarioRepository.BuscarTodos();
+
+                foreach (var item in usuarios)
                 {
-                    if (item.IsAdmin)
+                    if (item.Username == tbxUsuario.Text && item.Senha == tbxSenha.Text)
                     {
-                        //frmPainelAdmin.Show();
-                        MessageBox.Show("Admin.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (item.IsAdmin)
+                        {
+                            if (cbxIdioma.Text != "Inglês")
+                            {
+                                frmTelaAdm frm = new frmTelaAdm();
+                                frm.Show();
+                                this.WindowState = FormWindowState.Minimized;
+                            }
+                            else
+                            {
+                                frmTelaAdm frm = new frmTelaAdm(cbxIdioma.Text);
+                                frm.Show();
 
-                    }
-                    else
-                    {
-                        //frmPainelUser.Show();
-                        MessageBox.Show("Usuario.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        else
+                        {
+                            if (cbxIdioma.Text != "Inglês")
+                            {
+                                frmTelaUser frm = new frmTelaUser();
+                                frm.Show();
+                                this.WindowState = FormWindowState.Minimized;
+                            }
+                            else
+                            {
 
+                            }
+                        }
                     }
+                }
+            }
+            else
+            {
+                MessageBox.Show(this, "Escolha um Idioma / Choose a language", "Confirmação", MessageBoxButtons.OK);
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                var result = MessageBox.Show(this, "Você tem certeza que deseja sair?", "Confirmação", MessageBoxButtons.YesNo);
+                if (result != DialogResult.Yes)
+                {
+                    e.Cancel = true;
                 }
             }
         }
