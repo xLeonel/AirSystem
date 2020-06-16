@@ -104,8 +104,26 @@ namespace AirSystem.Views
         private void tbxFiltro_TextChanged(object sender, EventArgs e)
         {
             dgvListaUsuario.DataSource = null;
-            dgvListaUsuario.DataSource = usuarioRepository.BuscarTodos().
-                FindAll(x => x.Nome.ToUpper().Contains(tbxFiltro.Text.ToUpper()));
+
+            List<Usuario> usuarios = usuarioRepository.BuscarTodos();
+
+            List<UsuarioViewModel> userFiltro = new List<UsuarioViewModel>();
+
+            foreach (var item in usuarios)
+            {
+                UsuarioViewModel usuarioFiltro = new UsuarioViewModel
+                {
+                    Id = item.Id,
+                    Nome = item.Nome,
+                    Sobrenome = item.Sobrenome,
+                    IsAdm = item.IsAdmin
+                };
+
+                userFiltro.Add(usuarioFiltro);
+            }
+
+            dgvListaUsuario.DataSource = userFiltro.FindAll(x => x.Nome.ToUpper().Contains(tbxFiltro.Text.ToUpper()));
+
 
             Contador();
         }
@@ -156,7 +174,7 @@ namespace AirSystem.Views
                 tbxUsuario.Text = userSelect.Username;
                 tbxSenha.Text = userSelect.Senha;
                 dtpNascimento.Value = userSelect.DataNascimento;
-
+                
                 cbxAdm.Checked = userSelect.IsAdmin;
 
                 string[] stringSplitada = userSelect.Endereco.Split(',');

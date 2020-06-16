@@ -48,6 +48,7 @@ namespace AirSystem.Repositories
                     user.Username = item.Username;
                     user.Senha = item.Senha;
                     user.DataNascimento = item.DataNascimento;
+                    user.IsAdmin = item.IsAdmin;
 
                     return user;
                 }
