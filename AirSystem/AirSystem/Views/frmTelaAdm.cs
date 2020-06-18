@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AirSystem.Database;
+using AirSystem.Repositories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,10 +19,21 @@ namespace AirSystem.Views
             InitializeComponent();
         }
 
-        string idioma = "";
-        public frmTelaAdm(string idioma)
+        Acesso acess = new Acesso();
+
+        public frmTelaAdm(Acesso acess)
         {
             InitializeComponent();
+            this.acess = acess;
+        }
+
+        string idioma = "";
+        public frmTelaAdm(string idioma, Acesso acess)
+        {
+            InitializeComponent();
+
+            this.acess = acess;
+
 
             if (idioma == "Inglês")
             {
@@ -48,6 +61,31 @@ namespace AirSystem.Views
                 frm.Show();
                 this.WindowState = FormWindowState.Minimized;
             }
+        }
+
+        private void btnAcesso_Click(object sender, EventArgs e)
+        {
+            if (idioma != "Inglês")
+            {
+                frmAcessos frm = new frmAcessos();
+                frm.Show();
+                this.WindowState = FormWindowState.Minimized;
+            }
+            else
+            {
+                frmAcessos frm = new frmAcessos(idioma);
+                frm.Show();
+                this.WindowState = FormWindowState.Minimized;
+            }
+        }
+
+        private void frmTelaAdm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            acess.Dt_AcessoSaida = DateTime.Now;
+
+            AcessoRepository acessoRepository = new AcessoRepository();
+
+            acessoRepository.Cadastrar(acess);
         }
     }
 }

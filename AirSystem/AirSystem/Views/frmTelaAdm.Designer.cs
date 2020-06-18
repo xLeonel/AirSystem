@@ -33,6 +33,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.btnAcesso = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -86,11 +87,23 @@
             this.button5.Text = "Gerenciar Avião";
             this.button5.UseVisualStyleBackColor = true;
             // 
+            // btnAcesso
+            // 
+            this.btnAcesso.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAcesso.Location = new System.Drawing.Point(492, 228);
+            this.btnAcesso.Name = "btnAcesso";
+            this.btnAcesso.Size = new System.Drawing.Size(114, 87);
+            this.btnAcesso.TabIndex = 5;
+            this.btnAcesso.Text = "Log de Acesso";
+            this.btnAcesso.UseVisualStyleBackColor = true;
+            this.btnAcesso.Click += new System.EventHandler(this.btnAcesso_Click);
+            // 
             // frmTelaAdm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnAcesso);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -98,6 +111,7 @@
             this.Controls.Add(this.button1);
             this.Name = "frmTelaAdm";
             this.Text = "Tela Principal - AirSystem";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmTelaAdm_FormClosed);
             this.ResumeLayout(false);
 
         }
@@ -109,5 +123,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnAcesso;
     }
 }

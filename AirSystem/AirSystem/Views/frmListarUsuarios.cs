@@ -1,4 +1,5 @@
-﻿using AirSystem.Models;
+﻿using AirSystem.Database;
+using AirSystem.Models;
 using AirSystem.Repositories;
 using AirSystem.ViewModels;
 using System;
@@ -17,7 +18,8 @@ namespace AirSystem.Views
     {
         UsuarioRepository usuarioRepository = new UsuarioRepository();
 
-        Usuario userGrid = new Usuario();
+        Usuarios userGrid = new Usuarios();
+
         string idioma = "";
 
         public frmListarUsuarios()
@@ -48,16 +50,14 @@ namespace AirSystem.Views
                 btnSalvar.Text = "Save";
                 btnDeletar.Text = "Delete";
                 btnNovoUser.Text = "New User";
-                btnVoltar.Text = "Return";
-
-
+                btnVoltar.Text = "Back";
             }
 
         }
 
         private void frmListarUsuarios_Load(object sender, EventArgs e)
         {
-            List<Usuario> usuarios = usuarioRepository.BuscarTodos();
+            List<Usuarios> usuarios = usuarioRepository.BuscarTodos();
 
             atualizaLista();
         }
@@ -66,7 +66,7 @@ namespace AirSystem.Views
         {
             dgvListaUsuario.DataSource = null;
 
-            List<Usuario> usuarios = usuarioRepository.BuscarTodos();
+            List<Usuarios> usuarios = usuarioRepository.BuscarTodos();
 
             List<UsuarioViewModel> userFiltro = new List<UsuarioViewModel>();
 
@@ -74,9 +74,9 @@ namespace AirSystem.Views
             {
                 UsuarioViewModel usuarioFiltro = new UsuarioViewModel
                 {
-                    Id = item.Id,
-                    Nome = item.Nome,
-                    Sobrenome = item.Sobrenome,
+                    Id = item.IdUsuario,
+                    Nome = item.Tx_Nome,
+                    Sobrenome = item.Tx_Sobrenome,
                     IsAdm = item.IsAdmin
                 };
 
@@ -105,7 +105,7 @@ namespace AirSystem.Views
         {
             dgvListaUsuario.DataSource = null;
 
-            List<Usuario> usuarios = usuarioRepository.BuscarTodos();
+            List<Usuarios> usuarios = usuarioRepository.BuscarTodos();
 
             List<UsuarioViewModel> userFiltro = new List<UsuarioViewModel>();
 
@@ -113,9 +113,9 @@ namespace AirSystem.Views
             {
                 UsuarioViewModel usuarioFiltro = new UsuarioViewModel
                 {
-                    Id = item.Id,
-                    Nome = item.Nome,
-                    Sobrenome = item.Sobrenome,
+                    Id = item.IdUsuario,
+                    Nome = item.Tx_Nome,
+                    Sobrenome = item.Tx_Sobrenome,
                     IsAdm = item.IsAdmin
                 };
 
@@ -149,11 +149,11 @@ namespace AirSystem.Views
 
             if (result == DialogResult.Yes)
             {
-                usuarioRepository.Deletar(userGrid.Id);
+                usuarioRepository.Deletar(userGrid.IdUsuario);
                 atualizaLista();
             }
 
-        }
+        } 
 
         private void dgvListaUsuario_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -161,25 +161,18 @@ namespace AirSystem.Views
             {
                 DataGridViewRow linha = dgvListaUsuario.Rows[e.RowIndex];
 
-                Usuario usuario = new Usuario
-                {
-                    Id = Convert.ToInt32(linha.Cells[0].Value.ToString())
-                };
-
-                Usuario userSelect = usuarioRepository.BuscarId(usuario.Id);
-                userSelect.Id = usuario.Id;
-
-                tbxNome.Text = userSelect.Nome;
-                tbxSobrenome.Text = userSelect.Sobrenome;
-                tbxUsuario.Text = userSelect.Username;
-                tbxSenha.Text = userSelect.Senha;
-                dtpNascimento.Value = userSelect.DataNascimento;
+                int id = Convert.ToInt32(linha.Cells[0].Value.ToString());
                 
-                cbxAdm.Checked = userSelect.IsAdmin;
+                Usuarios userSelect = usuarioRepository.BuscarId(id);
 
-                string[] stringSplitada = userSelect.Endereco.Split(',');
-                tbxEndereco.Text = stringSplitada[0];
-                tbxNendereco.Text = stringSplitada[1];
+                tbxNome.Text = userSelect.Tx_Nome;
+                tbxSobrenome.Text = userSelect.Tx_Sobrenome;
+                tbxUsuario.Text = userSelect.Tx_Usuario;
+                tbxSenha.Text = userSelect.Tx_Senha;
+                dtpNascimento.Value = userSelect.Dt_Nascimento;
+                tbxEndereco.Text = userSelect.Tx_Logradouro;
+                tbxNendereco.Text = userSelect.Nr_Casa;
+                cbxAdm.Checked = userSelect.IsAdmin;
 
                 userGrid = userSelect;
             }
@@ -191,17 +184,17 @@ namespace AirSystem.Views
 
             if (result == DialogResult.Yes)
             {
-                userGrid.Nome = tbxNome.Text;
-                userGrid.Sobrenome = tbxSobrenome.Text;
-                var adress = $"{tbxEndereco.Text}, {tbxNendereco.Text}";
-
-                userGrid.Endereco = adress;
-                userGrid.DataNascimento = Convert.ToDateTime(dtpNascimento.Text);
-                userGrid.Username = tbxUsuario.Text;
-                userGrid.Senha = tbxSenha.Text;
+                userGrid.Tx_Nome = tbxNome.Text;
+                userGrid.Tx_Sobrenome = tbxSobrenome.Text;
+                userGrid.Tx_Logradouro = tbxEndereco.Text;
+                userGrid.Nr_Casa = tbxNendereco.Text;
+                userGrid.Dt_Nascimento = Convert.ToDateTime(dtpNascimento.Text);
+                userGrid.Tx_Usuario = tbxUsuario.Text;
+                userGrid.Tx_Senha = tbxSenha.Text;
                 userGrid.IsAdmin = cbxAdm.Checked;
+                userGrid.Tx_CaminhoFoto = "sem foto";
 
-                usuarioRepository.Salvar(userGrid);
+                usuarioRepository.Atualizar(userGrid);
 
                 atualizaLista();
             }

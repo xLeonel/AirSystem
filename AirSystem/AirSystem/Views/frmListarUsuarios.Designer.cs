@@ -89,7 +89,7 @@
             this.dtpNascimento.Location = new System.Drawing.Point(532, 253);
             this.dtpNascimento.Name = "dtpNascimento";
             this.dtpNascimento.Size = new System.Drawing.Size(145, 22);
-            this.dtpNascimento.TabIndex = 28;
+            this.dtpNascimento.TabIndex = 4;
             // 
             // tbxNendereco
             // 
@@ -98,7 +98,7 @@
             this.tbxNendereco.Location = new System.Drawing.Point(710, 225);
             this.tbxNendereco.Name = "tbxNendereco";
             this.tbxNendereco.Size = new System.Drawing.Size(52, 22);
-            this.tbxNendereco.TabIndex = 27;
+            this.tbxNendereco.TabIndex = 3;
             // 
             // tbxNome
             // 
@@ -107,7 +107,7 @@
             this.tbxNome.Location = new System.Drawing.Point(532, 169);
             this.tbxNome.Name = "tbxNome";
             this.tbxNome.Size = new System.Drawing.Size(230, 22);
-            this.tbxNome.TabIndex = 17;
+            this.tbxNome.TabIndex = 0;
             // 
             // tbxUsuario
             // 
@@ -116,7 +116,7 @@
             this.tbxUsuario.Location = new System.Drawing.Point(532, 281);
             this.tbxUsuario.Name = "tbxUsuario";
             this.tbxUsuario.Size = new System.Drawing.Size(230, 22);
-            this.tbxUsuario.TabIndex = 24;
+            this.tbxUsuario.TabIndex = 5;
             // 
             // tbxEndereco
             // 
@@ -125,7 +125,7 @@
             this.tbxEndereco.Location = new System.Drawing.Point(532, 225);
             this.tbxEndereco.Name = "tbxEndereco";
             this.tbxEndereco.Size = new System.Drawing.Size(174, 22);
-            this.tbxEndereco.TabIndex = 19;
+            this.tbxEndereco.TabIndex = 2;
             // 
             // tbxSenha
             // 
@@ -134,7 +134,7 @@
             this.tbxSenha.Location = new System.Drawing.Point(532, 309);
             this.tbxSenha.Name = "tbxSenha";
             this.tbxSenha.Size = new System.Drawing.Size(230, 22);
-            this.tbxSenha.TabIndex = 26;
+            this.tbxSenha.TabIndex = 6;
             // 
             // lblUsuario
             // 
@@ -211,7 +211,7 @@
             this.btnSalvar.Location = new System.Drawing.Point(623, 397);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
-            this.btnSalvar.TabIndex = 31;
+            this.btnSalvar.TabIndex = 8;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
@@ -282,7 +282,7 @@
             this.tbxSobrenome.Location = new System.Drawing.Point(532, 197);
             this.tbxSobrenome.Name = "tbxSobrenome";
             this.tbxSobrenome.Size = new System.Drawing.Size(230, 22);
-            this.tbxSobrenome.TabIndex = 38;
+            this.tbxSobrenome.TabIndex = 1;
             // 
             // cbxAdm
             // 
@@ -290,7 +290,7 @@
             this.cbxAdm.Location = new System.Drawing.Point(675, 351);
             this.cbxAdm.Name = "cbxAdm";
             this.cbxAdm.Size = new System.Drawing.Size(89, 17);
-            this.cbxAdm.TabIndex = 39;
+            this.cbxAdm.TabIndex = 7;
             this.cbxAdm.Text = "Administrador";
             this.cbxAdm.UseVisualStyleBackColor = true;
             // 

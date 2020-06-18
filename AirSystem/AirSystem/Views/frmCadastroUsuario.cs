@@ -1,4 +1,5 @@
-﻿using AirSystem.Models;
+﻿using AirSystem.Database;
+using AirSystem.Models;
 using AirSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,10 @@ namespace AirSystem.Views
             InitializeComponent();
         }
 
+        UsuarioRepository usuarioRepository = new UsuarioRepository();
+
+        Usuarios user = new Usuarios();
+
         private void frmCadastroUsuario_Load(object sender, EventArgs e)
         {
             lblSenhaAviso.Visible = false;
@@ -34,13 +39,18 @@ namespace AirSystem.Views
             InvisibleLabel(lblSenhaRegex);
             InvisibleLabel(lblUsuario);
 
+            lblEqualsUser.Visible = false;
+            lblEqualsUser.BackColor = Color.Transparent;
+
+
+
             cbxAdm.Parent = panel1;
             cbxAdm.BackColor = Color.Transparent;
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            UsuarioRepository usuarioRepository = new UsuarioRepository();
+            user = usuarioRepository.BuscarTodosUsername(tbxUsuario.Text);
 
             bool campoVazio = false;
             foreach (Control item in this.Controls)
@@ -55,30 +65,37 @@ namespace AirSystem.Views
 
             if (!campoVazio)
             {
-
-                if (tbxSenha.Text == tbxConfirmarSenha.Text)
+                if (user == null)
                 {
-                    Usuario usuario = new Usuario
+                    if (tbxSenha.Text == tbxConfirmarSenha.Text)
                     {
-                        Id = 0,
-                        Nome = tbxNome.Text,
-                        Sobrenome = tbxSobrenome.Text,
-                        DataNascimento = Convert.ToDateTime(dtpNascimento.Text),
-                        Endereco = $"{tbxEndereco.Text}, {tbxNendereco.Text}",
-                        Username = tbxUsuario.Text,
-                        Senha = tbxSenha.Text,
-                        IsAdmin = Convert.ToBoolean(cbxAdm.Checked)
-                    };
+                        Usuarios usuario = new Usuarios
+                        {
+                            Tx_Nome = tbxNome.Text,
+                            Tx_Sobrenome = tbxSobrenome.Text,
+                            Tx_Logradouro = tbxEndereco.Text,
+                            Nr_Casa = tbxNendereco.Text,
+                            Dt_Nascimento = Convert.ToDateTime(dtpNascimento.Text),
+                            Tx_Usuario = tbxUsuario.Text,
+                            Tx_Senha = tbxSenha.Text,
+                            Tx_CaminhoFoto = "semfoto",
+                            IsAdmin = Convert.ToBoolean(cbxAdm.Checked)
+                        };
 
-                    if (usuarioRepository.Cadastrar(usuario))
+                        if (usuarioRepository.Cadastrar(usuario))
+                        {
+                            MessageBox.Show("Cadastrado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
                     {
-                        MessageBox.Show("Cadastrado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("As senhas precisam ser idênticas.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     }
                 }
                 else
                 {
-                    MessageBox.Show("As senhas precisam ser idênticas.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    MessageBox.Show("Usuário já Existe.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else
@@ -143,6 +160,22 @@ namespace AirSystem.Views
                     e.Cancel = true;
                 }
             }
+        }
+
+        private void tbxUsuario_TextChanged(object sender, EventArgs e)
+        {
+            //TOFIX IMPLEMENTAÇAO CAUSA LENTIDAO 
+
+            //lblEqualsUser.Visible = true;
+
+            //if (user != null)
+            //{
+            //    lblEqualsUser.Text = "Usuário Indisponível";
+            //}
+            //else
+            //{
+            //    lblEqualsUser.Text = "Usuário disponível";
+            //}
         }
     }
 }

@@ -25,3 +25,9 @@ C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\obj\Debug\AirSystem.Views.f
 C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\obj\Debug\AirSystem.Views.frmTelaUser.resources
 C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\obj\Debug\AirSystem.MarkedWaterTextBox.resources
 C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\obj\Debug\AirSystem.Views.frmCadastroIngles.resources
+C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\bin\Debug\EntityFramework.dll
+C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\bin\Debug\EntityFramework.xml
+C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\obj\Debug\AirSystem.csproj.CopyComplete
+C:\Users\vitor\Desktop\AirSystem\AirSystem\AirSystem\obj\Debug\AirSystem.Views.frmAcessos.resources

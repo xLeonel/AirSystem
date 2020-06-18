@@ -43,6 +43,7 @@
             this.lblSenhaAviso = new System.Windows.Forms.Label();
             this.pcbUserFoto = new System.Windows.Forms.PictureBox();
             this.lblSenhaRegex = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tbxConfirmarSenha = new AirSystem.MarkedWaterTextBox();
             this.tbxSenha = new AirSystem.MarkedWaterTextBox();
             this.tbxUsuario = new AirSystem.MarkedWaterTextBox();
@@ -51,8 +52,9 @@
             this.tbxSobrenome = new AirSystem.MarkedWaterTextBox();
             this.tbxNome = new AirSystem.MarkedWaterTextBox();
             this.markedWaterTextBox1 = new AirSystem.MarkedWaterTextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblEqualsUser = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pcbUserFoto)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblNome
@@ -201,6 +203,15 @@
             this.lblSenhaRegex.TabIndex = 18;
             this.lblSenhaRegex.Text = "*A senha deve ter: pelo menos 8 caracteres, 1 letra maiúscula e 1 Número";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lblEqualsUser);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 450);
+            this.panel1.TabIndex = 26;
+            // 
             // tbxConfirmarSenha
             // 
             this.tbxConfirmarSenha.ForeColor = System.Drawing.Color.Gray;
@@ -236,6 +247,7 @@
             this.tbxUsuario.TabIndex = 23;
             this.tbxUsuario.Text = "Insira seu usuario";
             this.tbxUsuario.WaterMarkText = "Insira seu usuario";
+            this.tbxUsuario.TextChanged += new System.EventHandler(this.tbxUsuario_TextChanged);
             this.tbxUsuario.Enter += new System.EventHandler(this.Focus_enter);
             this.tbxUsuario.Leave += new System.EventHandler(this.Focus_leave);
             // 
@@ -296,13 +308,15 @@
             this.markedWaterTextBox1.TabIndex = 23;
             this.markedWaterTextBox1.WaterMarkText = null;
             // 
-            // panel1
+            // lblEqualsUser
             // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 450);
-            this.panel1.TabIndex = 26;
+            this.lblEqualsUser.AutoSize = true;
+            this.lblEqualsUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEqualsUser.Location = new System.Drawing.Point(307, 149);
+            this.lblEqualsUser.Name = "lblEqualsUser";
+            this.lblEqualsUser.Size = new System.Drawing.Size(36, 17);
+            this.lblEqualsUser.TabIndex = 27;
+            this.lblEqualsUser.Text = "user";
             // 
             // frmCadastroUsuario
             // 
@@ -338,6 +352,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCadastroUsuario_FormClosing);
             this.Load += new System.EventHandler(this.frmCadastroUsuario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pcbUserFoto)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -368,5 +384,6 @@
         private MarkedWaterTextBox tbxSenha;
         private MarkedWaterTextBox tbxConfirmarSenha;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblEqualsUser;
     }
 }

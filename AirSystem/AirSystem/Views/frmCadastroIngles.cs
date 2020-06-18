@@ -1,4 +1,5 @@
-﻿using AirSystem.Models;
+﻿using AirSystem.Database;
+using AirSystem.Models;
 using AirSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,10 @@ namespace AirSystem.Views
             InitializeComponent();
         }
 
+        UsuarioRepository usuarioRepository = new UsuarioRepository();
+
+        Usuarios user = new Usuarios();
+
         private void frmCadastroUsuario_Load(object sender, EventArgs e)
         {
             lblSenhaAviso.Visible = false;
@@ -40,7 +45,7 @@ namespace AirSystem.Views
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            UsuarioRepository usuarioRepository = new UsuarioRepository();
+            user = usuarioRepository.BuscarTodosUsername(tbxUsuario.Text);
 
             bool campoVazio = false;
             foreach (Control item in this.Controls)
@@ -56,28 +61,36 @@ namespace AirSystem.Views
             if (!campoVazio)
             {
 
-                if (tbxSenha.Text == tbxConfirmarSenha.Text)
+                if (user == null)
                 {
-                    Usuario usuario = new Usuario
+                    if (tbxSenha.Text == tbxConfirmarSenha.Text)
                     {
-                        Id = 0,
-                        Nome = tbxNome.Text,
-                        Sobrenome = tbxSobrenome.Text,
-                        DataNascimento = Convert.ToDateTime(dtpNascimento.Text),
-                        Endereco = $"{tbxEndereco.Text}, {tbxNendereco.Text}",
-                        Username = tbxUsuario.Text,
-                        Senha = tbxSenha.Text,
-                        IsAdmin = Convert.ToBoolean(cbxAdm.Checked)
-                    };
+                        Usuarios usuario = new Usuarios
+                        {
+                            Tx_Nome = tbxNome.Text,
+                            Tx_Sobrenome = tbxSobrenome.Text,
+                            Tx_Logradouro = tbxEndereco.Text,
+                            Nr_Casa = tbxNendereco.Text,
+                            Dt_Nascimento = Convert.ToDateTime(dtpNascimento.Text),
+                            Tx_Usuario = tbxUsuario.Text,
+                            Tx_Senha = tbxSenha.Text,
+                            Tx_CaminhoFoto = "sem foto",
+                            IsAdmin = Convert.ToBoolean(cbxAdm.Checked)
+                        };
 
-                    if (usuarioRepository.Cadastrar(usuario))
-                    {
-                        MessageBox.Show("Registered Successfully.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (usuarioRepository.Cadastrar(usuario))
+                        {
+                            MessageBox.Show("Registered Successfully.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
+                    else
+                    {
+                        MessageBox.Show("Password must be the same.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    } 
                 }
                 else
                 {
-                    MessageBox.Show("Password must be the same.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("User Exist.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
             }

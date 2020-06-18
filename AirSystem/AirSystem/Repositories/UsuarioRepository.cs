@@ -1,75 +1,107 @@
-﻿using AirSystem.Models;
+﻿using AirSystem.Database;
+using AirSystem.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AirSystem.Repositories
 {
     public class UsuarioRepository
     {
-        private static List<Usuario> usuarios;
-        private static int id = 1;
+        AirSystemContext ctx = new AirSystemContext();
 
-        public UsuarioRepository()
+        public bool Cadastrar(Usuarios user)
         {
-            if (usuarios == null)
+            try
             {
-                usuarios = new List<Usuario>();
+                ctx.Usuarios.Add(user);
+                ctx.SaveChanges();
+                return true;
+
             }
-        }
-
-        public bool Cadastrar(Usuario usuario)
-        {
-            usuario.Id = id;
-            usuarios.Add(usuario);
-            id++;
-            return true;
-        }
-
-        public List<Usuario> BuscarTodos()
-        {
-            return usuarios;
-        }
-
-        public Usuario BuscarId(int id)
-        {
-            foreach (var item in usuarios)
+            catch (DbEntityValidationException ex)
             {
-                if (item.Id == id)
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
                 {
-                    Usuario user = new Usuario();
-                    user.Id = item.Id;
-                    user.Nome = item.Nome;
-                    user.Sobrenome = item.Sobrenome;
-                    user.Senha = item.Sobrenome;
-                    user.Endereco = item.Endereco;
-                    user.Username = item.Username;
-                    user.Senha = item.Senha;
-                    user.DataNascimento = item.DataNascimento;
-                    user.IsAdmin = item.IsAdmin;
-
-                    return user;
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        Console.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
                 }
+                return false;
+
             }
-            return null;
+        }
+
+        public List<Usuarios> BuscarTodos()
+        {
+            return ctx.Usuarios.ToList();
+        }
+
+        public Usuarios BuscarTodosUsername(string username)
+        {
+            try
+            {
+                return ctx.Usuarios.ToList().Find(u => u.Tx_Usuario == username);
+            }
+            catch (DbEntityValidationException)
+            {   
+                return null;
+            }
+
+        }
+        public Usuarios BuscarId(int id)
+        {
+            return ctx.Usuarios.FirstOrDefault(x => x.IdUsuario == id);
         }
 
         public void Deletar(int id)
         {
-            Usuario usuario = usuarios.Find(x => x.Id == id);
-
-            usuarios.Remove(usuario);
+            Usuarios user = ctx.Usuarios.FirstOrDefault(x => x.IdUsuario == id);
+            ctx.Usuarios.Remove(user);
+            ctx.SaveChanges();
         }
 
-        public void Salvar(Usuario userGrid)
+        public void Atualizar(Usuarios userGrid)
         {
-            Usuario u = usuarios.Find(x => x.Id == userGrid.Id);
+            try
+            {
+                Usuarios u = ctx.Usuarios.FirstOrDefault(x => x.IdUsuario == userGrid.IdUsuario);
 
-            int posicao = usuarios.IndexOf(u);
+                u.Tx_Nome = userGrid.Tx_Nome;
+                u.Tx_Sobrenome = userGrid.Tx_Sobrenome;
+                u.Tx_Logradouro = userGrid.Tx_Logradouro;
+                u.Nr_Casa = userGrid.Nr_Casa;
+                u.Dt_Nascimento = userGrid.Dt_Nascimento;
+                u.Tx_Usuario = userGrid.Tx_Usuario;
+                u.Tx_Senha = userGrid.Tx_Senha;
+                u.Tx_CaminhoFoto = userGrid.Tx_CaminhoFoto;
+                u.IsAdmin = userGrid.IsAdmin;
 
-            usuarios[posicao] = userGrid;
+                ctx.Usuarios.AddOrUpdate(u);
+                ctx.SaveChanges();
+
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        Console.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+            }
+        }
+
+        public Usuarios BuscarUsuario(string email, string senha)
+        {
+            return ctx.Usuarios.FirstOrDefault(u => u.Tx_Usuario == email && u.Tx_Senha == senha);
         }
     }
 }

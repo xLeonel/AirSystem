@@ -1,4 +1,5 @@
-﻿using AirSystem.Models;
+﻿using AirSystem.Database;
+using AirSystem.Models;
 using AirSystem.Repositories;
 using AirSystem.Views;
 using System;
@@ -19,7 +20,6 @@ namespace AirSystem
         public Form1()
         {
             InitializeComponent();
-
         }
 
         private void InvisibleLabel(Label labelName)
@@ -70,25 +70,37 @@ namespace AirSystem
             if (!string.IsNullOrEmpty(cbxIdioma.Text))
             {
                 UsuarioRepository usuarioRepository = new UsuarioRepository();
-                List<Usuario> usuarios = usuarioRepository.BuscarTodos();
 
-                foreach (var item in usuarios)
+                AcessoRepository acessooRepository = new AcessoRepository();
+
+
+                Usuarios user = usuarioRepository.BuscarUsuario(tbxUsuario.Text, tbxSenha.Text);
+
+                if (user != null)
                 {
-                    if (item.Username == tbxUsuario.Text && item.Senha == tbxSenha.Text)
+
+                    if (user.Tx_Usuario == tbxUsuario.Text && user.Tx_Senha == tbxSenha.Text)
                     {
-                        if (item.IsAdmin)
+                        Acesso acessoNovo = new Acesso
                         {
+                            IdUsuario = user.IdUsuario,
+                            Dt_AcessoEntrada = DateTime.Now
+                        };
+
+                        if (user.IsAdmin)
+                        {
+
                             if (cbxIdioma.Text != "Inglês")
                             {
-                                frmTelaAdm frm = new frmTelaAdm();
+                                frmTelaAdm frm = new frmTelaAdm(acessoNovo);
                                 frm.Show();
                                 this.WindowState = FormWindowState.Minimized;
+
                             }
                             else
                             {
-                                frmTelaAdm frm = new frmTelaAdm(cbxIdioma.Text);
+                                frmTelaAdm frm = new frmTelaAdm(cbxIdioma.Text, acessoNovo);
                                 frm.Show();
-
                             }
                         }
                         else
@@ -105,7 +117,16 @@ namespace AirSystem
                             }
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show(this, "Senha Incorreta", "Confirmação", MessageBoxButtons.OK);
+                    }
                 }
+                else
+                {
+                    MessageBox.Show(this, "Preencha os campo.", "Confirmação", MessageBoxButtons.OK);
+                }
+
             }
             else
             {
